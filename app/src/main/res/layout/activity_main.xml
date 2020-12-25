@@ -6,13 +6,52 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Welcome to MMA store!"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="185dp"
+        tools:layout_editor_absoluteY="72dp" />
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="World's biggest MMA sportgear webshop"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="104dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/logomma"
+        tools:layout_editor_absoluteY="158dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/login_btn_bg"
+        android:text="login"
+        android:textColor="@color/white"
+        tools:layout_editor_absoluteX="171dp"
+        tools:layout_editor_absoluteY="445dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        tools:layout_editor_absoluteX="187dp"
+        tools:layout_editor_absoluteY="521dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
