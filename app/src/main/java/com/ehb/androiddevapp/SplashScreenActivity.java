@@ -15,6 +15,9 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
+        //actionbar kleur wijzigen
+        getWindow().setStatusBarColor(getResources().getColor(R.color.splashScreenActionBarColor));
+
         //een splash screen tonen (2 sec lang) en daarna door verwijzen naar de main activity
         new Handler().postDelayed(new Runnable(){
 
