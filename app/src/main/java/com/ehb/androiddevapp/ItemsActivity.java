@@ -61,8 +61,8 @@ public class ItemsActivity extends AppCompatActivity {
                 }
             });
         }
-        if(type!=null && type.equalsIgnoreCase("man")){
-            mStore.collection("All").whereEqualTo("type","man").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        if(type!=null && type.equalsIgnoreCase("Gloves")){
+            mStore.collection("All").whereEqualTo("type","Gloves").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if(task.isSuccessful()){
@@ -76,8 +76,8 @@ public class ItemsActivity extends AppCompatActivity {
                 }
             });
         }
-        if(type!=null && type.equalsIgnoreCase("woman")){
-            mStore.collection("All").whereEqualTo("type","woman").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        if(type!=null && type.equalsIgnoreCase("Shorts")){
+            mStore.collection("All").whereEqualTo("type","Shorts").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if(task.isSuccessful()){
@@ -91,8 +91,8 @@ public class ItemsActivity extends AppCompatActivity {
                 }
             });
         }
-        if(type!=null && type.equalsIgnoreCase("kid")){
-            mStore.collection("All").whereEqualTo("type","kid").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        if(type!=null && type.equalsIgnoreCase("Tops")){
+            mStore.collection("All").whereEqualTo("type","Tops").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if(task.isSuccessful()){

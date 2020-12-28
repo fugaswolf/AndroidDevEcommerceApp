@@ -36,7 +36,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/category_recycler"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"/>
+                android:layout_height="100dp"/>
         </LinearLayout>
         <LinearLayout
             android:orientation="vertical"
@@ -53,7 +53,7 @@
                     android:textSize="18sp"/>
 
                 <TextView
-                    android:id="@+id/fea_see_all"
+                    android:id="@+id/featured_see_all"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -64,7 +64,7 @@
                     android:textSize="18sp"/>
             </RelativeLayout>
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/feature_recycler"
+                android:id="@+id/featured_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"/>
         </LinearLayout>
@@ -79,7 +79,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Best Sell"
+                    android:text="Best Sellers"
                     android:textSize="18sp"/>
 
                 <TextView
@@ -89,12 +89,12 @@
                     android:layout_gravity="right"
                     android:layout_marginEnd="5dp"
                     android:gravity="right"
-                    android:id="@+id/best_sell"
+                    android:id="@+id/best_seller"
                     android:text="See All"
                     android:textSize="18sp"/>
             </RelativeLayout>
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/bestsell_recycler"
+                android:id="@+id/bestseller_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"/>
         </LinearLayout>

@@ -2,7 +2,7 @@ package com.ehb.androiddevapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,8 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.ehb.androiddevapp.domain.BestSell;
-import com.ehb.androiddevapp.domain.Feature;
+import com.ehb.androiddevapp.domain.BestSeller;
+import com.ehb.androiddevapp.domain.Featured;
 import com.ehb.androiddevapp.domain.Items;
 
 public class DetailActivity extends AppCompatActivity {
@@ -23,8 +23,8 @@ public class DetailActivity extends AppCompatActivity {
     private TextView myItemDesc;
     private Button myAddToCart;
     private Button myBuyBtn;
-    Feature feature = null;
-    BestSell bestSell = null;
+    Featured featured = null;
+    BestSeller bestSeller = null;
     Items items=null;
     private Toolbar myToolbar;
 
@@ -47,42 +47,42 @@ public class DetailActivity extends AppCompatActivity {
         myAddToCart=findViewById(R.id.item_add_cart);
         myBuyBtn=findViewById(R.id.item_buy_now);
         final Object obj=  getIntent().getSerializableExtra("detail");
-        if(obj instanceof Feature){
-            feature= (Feature) obj;
-        }else if(obj instanceof BestSell){
-            bestSell= (BestSell) obj;
+        if(obj instanceof Featured){
+            featured = (Featured) obj;
+        }else if(obj instanceof BestSeller){
+            bestSeller = (BestSeller) obj;
         }
         else if(obj instanceof Items){
             items= (Items) obj;
         }
-        if(feature!=null){
-            Glide.with(getApplicationContext()).load(feature.getImg_url()).into(myImage);
-            myItemName.setText(feature.getName());
-            myPrice.setText(feature.getPrice()+"$");
-            myItemRating.setText(feature.getRating()+"");
-            if(feature.getRating()>3){
+        if(featured !=null){
+            Glide.with(getApplicationContext()).load(featured.getImg_url()).into(myImage);
+            myItemName.setText(featured.getName());
+            myPrice.setText(featured.getPrice()+"€");
+            myItemRating.setText(featured.getRating()+"");
+            if(featured.getRating()>3){
                 myItemRatDesc.setText("Very Good");
             }else{
                 myItemRatDesc.setText("Good");
             }
-            myItemDesc.setText(feature.getDescription());
+            myItemDesc.setText(featured.getDescription());
         }
-        if(bestSell!=null){
-            Glide.with(getApplicationContext()).load(bestSell.getImg_url()).into(myImage);
-            myItemName.setText(bestSell.getName());
-            myPrice.setText(bestSell.getPrice()+"$");
-            myItemRating.setText(bestSell.getRating()+"");
-            if(bestSell.getRating()>3){
+        if(bestSeller !=null){
+            Glide.with(getApplicationContext()).load(bestSeller.getImg_url()).into(myImage);
+            myItemName.setText(bestSeller.getName());
+            myPrice.setText(bestSeller.getPrice()+"€");
+            myItemRating.setText(bestSeller.getRating()+"");
+            if(bestSeller.getRating()>3){
                 myItemRatDesc.setText("Very Good");
             }else{
                 myItemRatDesc.setText("Good");
             }
-            myItemDesc.setText(bestSell.getDescription());
+            myItemDesc.setText(bestSeller.getDescription());
         }
         if(items!=null){
             Glide.with(getApplicationContext()).load(items.getImg_url()).into(myImage);
             myItemName.setText(items.getName());
-            myPrice.setText(items.getPrice()+"$");
+            myPrice.setText(items.getPrice()+"€");
             myItemRating.setText(items.getRating()+"");
             if(items.getRating()>3){
                 myItemRatDesc.setText("Very Good");

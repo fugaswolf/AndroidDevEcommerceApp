@@ -2,14 +2,14 @@ package com.ehb.androiddevapp.domain;
 
 import java.io.Serializable;
 
-public class Feature implements Serializable {
+public class Featured implements Serializable {
     String description;
     String img_url;
     String name;
     double price;
     int rating;
 
-    public Feature() {
+    public Featured() {
     }
 
     public String getDescription() {

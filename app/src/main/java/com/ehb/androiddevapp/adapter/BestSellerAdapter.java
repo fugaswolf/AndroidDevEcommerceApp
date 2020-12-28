@@ -14,36 +14,36 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.ehb.androiddevapp.DetailActivity;
 import com.ehb.androiddevapp.R;
-import com.ehb.androiddevapp.domain.BestSell;
+import com.ehb.androiddevapp.domain.BestSeller;
 
 import java.util.List;
 
-public class BestSellAdapter extends RecyclerView.Adapter<BestSellAdapter.ViewHolder> {
+public class BestSellerAdapter extends RecyclerView.Adapter<BestSellerAdapter.ViewHolder> {
     Context context;
-    List<BestSell> myBestSellList;
-    public BestSellAdapter(Context context, List<BestSell> myBestSellList) {
+    List<BestSeller> myBestSellerList;
+    public BestSellerAdapter(Context context, List<BestSeller> myBestSellerList) {
         this.context=context;
-        this.myBestSellList=myBestSellList;
+        this.myBestSellerList=myBestSellerList;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.single_bestsell_item,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.single_bestseller_item,parent,false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        holder.mName.setText(myBestSellList.get(position).getName());
-        holder.mPrice.setText(myBestSellList.get(position).getPrice()+" $");
-        Glide.with(context).load(myBestSellList.get(position).getImg_url()).into(holder.mImage);
+        holder.myName.setText(myBestSellerList.get(position).getName());
+        holder.myPrice.setText(myBestSellerList.get(position).getPrice()+" €");
+        Glide.with(context).load(myBestSellerList.get(position).getImg_url()).into(holder.myImage);
 
-        holder.mImage.setOnClickListener(new View.OnClickListener() {
+        holder.myImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(context, DetailActivity.class);
-                intent.putExtra("detail",myBestSellList.get(position));
+                intent.putExtra("detail",myBestSellerList.get(position));
                 context.startActivity(intent);
             }
         });
@@ -51,19 +51,19 @@ public class BestSellAdapter extends RecyclerView.Adapter<BestSellAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return myBestSellList.size();
+        return myBestSellerList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        ImageView mImage;
-        TextView mName;
-        TextView mPrice;
+        ImageView myImage;
+        TextView myName;
+        TextView myPrice;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            mImage=itemView.findViewById(R.id.bs_img);
-            mName=itemView.findViewById(R.id.bs_name);
-            mPrice=itemView.findViewById(R.id.bs_cost);
+            myImage=itemView.findViewById(R.id.bs_img);
+            myName=itemView.findViewById(R.id.bs_name);
+            myPrice=itemView.findViewById(R.id.bs_cost);
         }
     }
 }

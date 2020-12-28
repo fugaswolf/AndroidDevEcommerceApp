@@ -2,14 +2,14 @@ package com.ehb.androiddevapp.domain;
 
 import java.io.Serializable;
 
-public class BestSell implements Serializable {
+public class BestSeller implements Serializable {
     String description;
     String name;
     String img_url;
     double price;
     int rating;
 
-    public BestSell() {
+    public BestSeller() {
     }
 
     public String getDescription() {

@@ -20,6 +20,6 @@
         android:id="@+id/f_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Woman T-Shirt"
+        android:text="MMA Top"
         android:textSize="18sp"/>
 </LinearLayout>

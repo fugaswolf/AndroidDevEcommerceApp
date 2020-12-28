@@ -14,44 +14,43 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.ehb.androiddevapp.DetailActivity;
 import com.ehb.androiddevapp.R;
-import com.ehb.androiddevapp.domain.Feature;
+import com.ehb.androiddevapp.domain.Featured;
 
 import java.util.List;
 
-public class FeatureAdapter extends RecyclerView.Adapter<FeatureAdapter.ViewHolder> {
+public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.ViewHolder> {
     Context context;
-    List<Feature> myFeatureList;
-    public FeatureAdapter(Context context, List<Feature> myFeatureList) {
+    List<Featured> myFeaturedList;
+
+
+    public FeaturedAdapter(Context context, List<Featured> myFeaturedList) {
         this.context=context;
-        this.myFeatureList=myFeatureList;
+        this.myFeaturedList = myFeaturedList;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.single_feature_item,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.single_featured_item,parent,false);
 
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        holder.myFetCost.setText(myFeatureList.get(position).getPrice()+" $");
-        holder.myFetName.setText(myFeatureList.get(position).getName());
-        Glide.with(context).load(myFeatureList.get(position).getImg_url()).into(holder.myFetImage);
-        holder.myFetImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(context, DetailActivity.class);
-                intent.putExtra("detail",myFeatureList.get(position));
-                context.startActivity(intent);
-            }
+        holder.myFetCost.setText(myFeaturedList.get(position).getPrice()+" €");
+        holder.myFetName.setText(myFeaturedList.get(position).getName());
+        Glide.with(context).load(myFeaturedList.get(position).getImg_url()).into(holder.myFetImage);
+        holder.myFetImage.setOnClickListener(v -> {
+            Intent intent=new Intent(context, DetailActivity.class);
+            intent.putExtra("detail", myFeaturedList.get(position));
+            context.startActivity(intent);
         });
     }
 
     @Override
     public int getItemCount() {
-        return myFeatureList.size();
+        return myFeaturedList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

@@ -16,12 +16,12 @@ import android.widget.TextView;
 
 import com.ehb.androiddevapp.ItemsActivity;
 import com.ehb.androiddevapp.R;
-import com.ehb.androiddevapp.adapter.BestSellAdapter;
+import com.ehb.androiddevapp.adapter.BestSellerAdapter;
 import com.ehb.androiddevapp.adapter.CategoryAdapter;
-import com.ehb.androiddevapp.adapter.FeatureAdapter;
-import com.ehb.androiddevapp.domain.BestSell;
+import com.ehb.androiddevapp.adapter.FeaturedAdapter;
+import com.ehb.androiddevapp.domain.BestSeller;
 import com.ehb.androiddevapp.domain.Category;
-import com.ehb.androiddevapp.domain.Feature;
+import com.ehb.androiddevapp.domain.Featured;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -41,16 +41,16 @@ public class HomeFragment extends Fragment {
     private CategoryAdapter myCategoryAdapter;
     private RecyclerView myCatRecyclerView;
     //Feature Tab
-    private List<Feature> myFeatureList;
-    private FeatureAdapter myFeatureAdapter;
+    private List<Featured> myFeaturedList;
+    private FeaturedAdapter myFeaturedAdapter;
     private RecyclerView myFeatureRecyclerView;
     //BestSell Tab
-    private List<BestSell> myBestSellList;
-    private BestSellAdapter myBestSellAdapter;
+    private List<BestSeller> myBestSellerList;
+    private BestSellerAdapter myBestSellerAdapter;
     private RecyclerView myBestSellRecyclerView;
     private TextView mySeeAll;
-    private TextView myFeature;
-    private TextView myBestSell;
+    private TextView myFeatured;
+    private TextView myBestSeller;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -64,27 +64,27 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         myStore = FirebaseFirestore.getInstance();
         mySeeAll = view.findViewById(R.id.see_all);
-        myFeature = view.findViewById(R.id.fea_see_all);
-        myBestSell = view.findViewById(R.id.best_sell);
+        myFeatured = view.findViewById(R.id.featured_see_all);
+        myBestSeller = view.findViewById(R.id.best_seller);
         myCatRecyclerView = view.findViewById(R.id.category_recycler);
-        myFeatureRecyclerView = view.findViewById(R.id.feature_recycler);
-        myBestSellRecyclerView = view.findViewById(R.id.bestsell_recycler);
+        myFeatureRecyclerView = view.findViewById(R.id.featured_recycler);
+        myBestSellRecyclerView = view.findViewById(R.id.bestseller_recycler);
         //For Category
         myCategoryList = new ArrayList<>();
         myCategoryAdapter = new CategoryAdapter(getContext(), myCategoryList);
         myCatRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
         myCatRecyclerView.setAdapter(myCategoryAdapter);
 
-        //For Feature
-        myFeatureList = new ArrayList<>();
-        myFeatureAdapter = new FeatureAdapter(getContext(), myFeatureList);
+        //For Featured
+        myFeaturedList = new ArrayList<>();
+        myFeaturedAdapter = new FeaturedAdapter(getContext(), myFeaturedList);
         myFeatureRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
-        myFeatureRecyclerView.setAdapter(myFeatureAdapter);
-        //For BestSell
-        myBestSellList = new ArrayList<>();
-        myBestSellAdapter = new BestSellAdapter(getContext(), myBestSellList);
+        myFeatureRecyclerView.setAdapter(myFeaturedAdapter);
+        //For BestSeller
+        myBestSellerList = new ArrayList<>();
+        myBestSellerAdapter = new BestSellerAdapter(getContext(), myBestSellerList);
         myBestSellRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
-        myBestSellRecyclerView.setAdapter(myBestSellAdapter);
+        myBestSellRecyclerView.setAdapter(myBestSellerAdapter);
 
 
         myStore.collection("Category")
@@ -99,42 +99,42 @@ public class HomeFragment extends Fragment {
                                 myCategoryAdapter.notifyDataSetChanged();
                             }
                         } else {
-                            Log.w("TAG", "Error getting documents.", task.getException());
+                            Log.w("TAG", "Error getting categories.", task.getException());
                         }
                     }
                 });
 
-        myStore.collection("Feature")
+        myStore.collection("Featured")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Feature feature = document.toObject(Feature.class);
-                                myFeatureList.add(feature);
-                                myFeatureAdapter.notifyDataSetChanged();
+                                Featured featured = document.toObject(Featured.class);
+                                myFeaturedList.add(featured);
+                                myFeaturedAdapter.notifyDataSetChanged();
                             }
                         } else {
-                            Log.w("TAG", "Error getting documents.", task.getException());
+                            Log.w("TAG", "Error getting featured products.", task.getException());
                         }
                     }
                 });
 
 
-        myStore.collection("BestSell")
+        myStore.collection("BestSeller")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                BestSell bestSell = document.toObject(BestSell.class);
-                                myBestSellList.add(bestSell);
-                                myBestSellAdapter.notifyDataSetChanged();
+                                BestSeller bestSeller = document.toObject(BestSeller.class);
+                                myBestSellerList.add(bestSeller);
+                                myBestSellerAdapter.notifyDataSetChanged();
                             }
                         } else {
-                            Log.w("TAG", "Error getting documents.", task.getException());
+                            Log.w("TAG", "Error getting best sellers.", task.getException());
                         }
                     }
                 });
@@ -145,14 +145,14 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        myBestSell.setOnClickListener(new View.OnClickListener() {
+        myBestSeller.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), ItemsActivity.class);
                 startActivity(intent);
             }
         });
-        myFeature.setOnClickListener(new View.OnClickListener() {
+        myFeatured.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), ItemsActivity.class);

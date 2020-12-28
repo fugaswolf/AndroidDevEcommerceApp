@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 
+import com.ehb.androiddevapp.ItemActivity;
 import com.ehb.androiddevapp.ItemsActivity;
 import com.ehb.androiddevapp.R;
 import com.ehb.androiddevapp.domain.Category;
@@ -21,9 +22,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     private Context context;
     private List<Category> myCategoryList;
 
-    public CategoryAdapter(Context context, List<Category> mCategoryList) {
+    public CategoryAdapter(Context context, List<Category> myCategoryList) {
         this.context=context;
-        this.myCategoryList=mCategoryList;
+        this.myCategoryList=myCategoryList;
     }
 
     @NonNull
@@ -36,6 +37,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         Glide.with(context).load(myCategoryList.get(position).getImg_url()).into(holder.myTypeImg);
+
         holder.myTypeImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
