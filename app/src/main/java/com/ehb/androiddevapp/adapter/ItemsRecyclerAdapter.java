@@ -22,7 +22,7 @@ import java.util.List;
 public class ItemsRecyclerAdapter extends RecyclerView.Adapter<ItemsRecyclerAdapter.ViewHolder> {
     Context applicationContext;
     List<Items> myItemsList;
-    public ItemsRecyclerAdapter(Context applicationContext, List<Items> mItemsList) {
+    public ItemsRecyclerAdapter(Context applicationContext, List<Items> myItemsList) {
         this.applicationContext=applicationContext;
         this.myItemsList=myItemsList;
     }

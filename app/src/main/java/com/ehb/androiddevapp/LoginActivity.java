@@ -2,6 +2,7 @@ package com.ehb.androiddevapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,6 +24,8 @@ public class LoginActivity extends AppCompatActivity {
     private Button myLoginBtn;
     private FirebaseAuth myAuth;
 
+    private Toolbar myToolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +35,9 @@ public class LoginActivity extends AppCompatActivity {
         myPassword = findViewById(R.id.log_pass);
         myLoginBtn = findViewById(R.id.log_btn);
         myAuth = FirebaseAuth.getInstance();
+        myToolbar = findViewById(R.id.login_toolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
 

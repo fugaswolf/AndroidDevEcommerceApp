@@ -17,6 +17,7 @@ import org.json.JSONObject;
 
 public class PaymentActivity extends AppCompatActivity implements PaymentResultListener {
         TextView myTotal;
+        TextView myTotal2;
         Button payBtn;
         double amount=0.0;
 
@@ -27,8 +28,10 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
                 amount=getIntent().getDoubleExtra("amount",0.0);
                 setContentView(R.layout.activity_payment);
                 myTotal=findViewById(R.id.sub_total);
+                myTotal2=findViewById(R.id.total_amt);
                 payBtn=findViewById(R.id.pay_btn);
                 myTotal.setText("€ "+amount+"");
+                myTotal2.setText("€ "+amount+"");
                 Checkout.preload(getApplicationContext());
 
                 payBtn.setOnClickListener(new View.OnClickListener() {
@@ -50,14 +53,12 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
                         //Set Company Name
                         options.put("name", "Jakob Broeder");
                         //Ref no
-                        options.put("description", "Reference No. #123456");
+                        options.put("description", "Ref. No. #123456");
                         //Image to be display
                         options.put("image", "https://s3.amazonaws.com/rzp-mobile/images/rzp.png");
-                        //options.put("order_id", "order_9A33XWu170gUtm");
-                        // Currency type
+
                         options.put("currency", "EUR");
-                        //double total = Double.parseDouble(mAmountText.getText().toString());
-                        //multiply with 100 to get exact amount in rupee
+
                         amount = amount * 100;
                         //amount
                         options.put("amount", amount);

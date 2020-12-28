@@ -2,6 +2,7 @@ package com.ehb.androiddevapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,6 +24,8 @@ public class RegisterActivity extends AppCompatActivity {
     private Button myRegBtn;
     private FirebaseAuth myAuth;
 
+    private Toolbar myToolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +36,11 @@ public class RegisterActivity extends AppCompatActivity {
         myPassword = findViewById(R.id.reg_password);
         myRegBtn = findViewById(R.id.log_btn);
         myAuth = FirebaseAuth.getInstance();
+
+        myToolbar = findViewById(R.id.reg_toolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
 
         //eens we op create account gedrukt hebben zal het volgende gebeuren:

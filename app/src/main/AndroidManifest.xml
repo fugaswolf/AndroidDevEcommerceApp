@@ -12,14 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidDevApp">
         <activity android:name=".PaymentActivity"></activity>
-        <activity android:name=".AddAddressActivity" />
-        <activity android:name=".AddressActivity" />
+        <activity android:name=".AddAddressActivity" android:parentActivityName=".AddressActivity"/>
+        <activity android:name=".AddressActivity" android:parentActivityName=".DetailActivity"/>
         <activity android:name=".ItemActivity" />
-        <activity android:name=".DetailActivity" />
+        <activity android:name=".DetailActivity" android:parentActivityName=".HomeActivity" />
         <activity android:name=".ItemsActivity" />
         <activity android:name=".HomeActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".RegisterActivity" android:parentActivityName=".MainActivity" />
+        <activity android:name=".LoginActivity" android:parentActivityName=".MainActivity"/>
         <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,6 +28,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
+        <meta-data
+            android:name="com.razorpay.ApiKey"
+            android:value="rzp_test_nBf32QJslsqCOG" />
     </application>
 
 </manifest>
