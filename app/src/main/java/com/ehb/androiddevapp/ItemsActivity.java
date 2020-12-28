@@ -25,8 +25,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemsActivity extends AppCompatActivity {
-    private FirebaseFirestore mStore;
-    List<Items> mItemsList;
+    private FirebaseFirestore myStore;
+    List<Items> myItemsList;
     private RecyclerView itemRecyclerView;
     private ItemsRecyclerAdapter itemsRecyclerAdapter;
     private Toolbar myToolbar;
@@ -36,25 +36,25 @@ public class ItemsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_items);
         String type=getIntent().getStringExtra("type");
-        mStore=FirebaseFirestore.getInstance();
-        mItemsList=new ArrayList<>();
+        myStore=FirebaseFirestore.getInstance();
+        myItemsList=new ArrayList<>();
         myToolbar= findViewById(R.id.item_toolbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setTitle("Items");
 
         itemRecyclerView=findViewById(R.id.items_recycler);
         itemRecyclerView.setLayoutManager(new GridLayoutManager(this,2));
-        itemsRecyclerAdapter = new ItemsRecyclerAdapter(this,mItemsList);
+        itemsRecyclerAdapter = new ItemsRecyclerAdapter(this,myItemsList);
         itemRecyclerView.setAdapter(itemsRecyclerAdapter);
         if(type==null || type.isEmpty()){
-            mStore.collection("All").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            myStore.collection("All").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if(task.isSuccessful()){
                         for(DocumentSnapshot doc:task.getResult().getDocuments()){
                             Log.i("TAG", "onComplete: "+doc.toString());
                             Items items=doc.toObject(Items.class);
-                            mItemsList.add(items);
+                            myItemsList.add(items);
                             itemsRecyclerAdapter.notifyDataSetChanged();
                         }
                     }
@@ -62,14 +62,14 @@ public class ItemsActivity extends AppCompatActivity {
             });
         }
         if(type!=null && type.equalsIgnoreCase("Gloves")){
-            mStore.collection("All").whereEqualTo("type","Gloves").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            myStore.collection("All").whereEqualTo("type","Gloves").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if(task.isSuccessful()){
                         for(DocumentSnapshot doc:task.getResult().getDocuments()){
                             Log.i("TAG", "onComplete: "+doc.toString());
                             Items items=doc.toObject(Items.class);
-                            mItemsList.add(items);
+                            myItemsList.add(items);
                             itemsRecyclerAdapter.notifyDataSetChanged();
                         }
                     }
@@ -77,14 +77,14 @@ public class ItemsActivity extends AppCompatActivity {
             });
         }
         if(type!=null && type.equalsIgnoreCase("Shorts")){
-            mStore.collection("All").whereEqualTo("type","Shorts").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            myStore.collection("All").whereEqualTo("type","Shorts").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if(task.isSuccessful()){
                         for(DocumentSnapshot doc:task.getResult().getDocuments()){
                             Log.i("TAG", "onComplete: "+doc.toString());
                             Items items=doc.toObject(Items.class);
-                            mItemsList.add(items);
+                            myItemsList.add(items);
                             itemsRecyclerAdapter.notifyDataSetChanged();
                         }
                     }
@@ -92,14 +92,14 @@ public class ItemsActivity extends AppCompatActivity {
             });
         }
         if(type!=null && type.equalsIgnoreCase("Tops")){
-            mStore.collection("All").whereEqualTo("type","Tops").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            myStore.collection("All").whereEqualTo("type","Tops").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if(task.isSuccessful()){
                         for(DocumentSnapshot doc:task.getResult().getDocuments()){
                             Log.i("TAG", "onComplete: "+doc.toString());
                             Items items=doc.toObject(Items.class);
-                            mItemsList.add(items);
+                            myItemsList.add(items);
                             itemsRecyclerAdapter.notifyDataSetChanged();
                         }
                     }
@@ -131,15 +131,15 @@ public class ItemsActivity extends AppCompatActivity {
     }
 
     private void searchItem(String newText) {
-        mItemsList.clear();
-        mStore.collection("All").whereGreaterThanOrEqualTo("name",newText).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        myItemsList.clear();
+        myStore.collection("All").whereGreaterThanOrEqualTo("name",newText).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()){
                     for(DocumentSnapshot doc:task.getResult().getDocuments()){
                         Log.i("TAG", "onComplete: "+doc.toString());
                         Items items=doc.toObject(Items.class);
-                        mItemsList.add(items);
+                        myItemsList.add(items);
                         itemsRecyclerAdapter.notifyDataSetChanged();
                     }
                 }

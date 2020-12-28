@@ -21,10 +21,10 @@ import java.util.List;
 
 public class ItemsRecyclerAdapter extends RecyclerView.Adapter<ItemsRecyclerAdapter.ViewHolder> {
     Context applicationContext;
-    List<Items> mItemsList;
+    List<Items> myItemsList;
     public ItemsRecyclerAdapter(Context applicationContext, List<Items> mItemsList) {
         this.applicationContext=applicationContext;
-        this.mItemsList=mItemsList;
+        this.myItemsList=myItemsList;
     }
 
     @NonNull
@@ -36,10 +36,10 @@ public class ItemsRecyclerAdapter extends RecyclerView.Adapter<ItemsRecyclerAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        holder.myCost.setText("$ "+mItemsList.get(position).getPrice());
-        holder.myName.setText(mItemsList.get(position).getName());
+        holder.myCost.setText("€ "+myItemsList.get(position).getPrice());
+        holder.myName.setText(myItemsList.get(position).getName());
         if(!(applicationContext instanceof HomeActivity)){
-            Glide.with(applicationContext).load(mItemsList.get(position).getImg_url()).into(holder.myItemImage);
+            Glide.with(applicationContext).load(myItemsList.get(position).getImg_url()).into(holder.myItemImage);
 
         }else
         {
@@ -50,7 +50,7 @@ public class ItemsRecyclerAdapter extends RecyclerView.Adapter<ItemsRecyclerAdap
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(applicationContext, DetailActivity.class);
-                intent.putExtra("detail",mItemsList.get(position));
+                intent.putExtra("detail",myItemsList.get(position));
                 applicationContext.startActivity(intent);
             }
         });
@@ -58,7 +58,7 @@ public class ItemsRecyclerAdapter extends RecyclerView.Adapter<ItemsRecyclerAdap
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(applicationContext, DetailActivity.class);
-                intent.putExtra("detail",mItemsList.get(position));
+                intent.putExtra("detail",myItemsList.get(position));
                 applicationContext.startActivity(intent);
             }
         });
@@ -66,7 +66,7 @@ public class ItemsRecyclerAdapter extends RecyclerView.Adapter<ItemsRecyclerAdap
 
     @Override
     public int getItemCount() {
-        return mItemsList.size();
+        return myItemsList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
