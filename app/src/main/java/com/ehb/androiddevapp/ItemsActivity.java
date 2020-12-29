@@ -1,9 +1,11 @@
 package com.ehb.androiddevapp;
 
+
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,7 +14,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-
 import com.ehb.androiddevapp.adapter.ItemsRecyclerAdapter;
 import com.ehb.androiddevapp.domain.Items;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -20,6 +21,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,11 +42,12 @@ public class ItemsActivity extends AppCompatActivity {
         myItemsList=new ArrayList<>();
         myToolbar= findViewById(R.id.item_toolbar);
         setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Items");
 
         itemRecyclerView=findViewById(R.id.items_recycler);
         itemRecyclerView.setLayoutManager(new GridLayoutManager(this,2));
-        itemsRecyclerAdapter = new ItemsRecyclerAdapter(this,myItemsList);
+        itemsRecyclerAdapter=new ItemsRecyclerAdapter(this,myItemsList);
         itemRecyclerView.setAdapter(itemsRecyclerAdapter);
         if(type==null || type.isEmpty()){
             myStore.collection("All").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -123,7 +126,6 @@ public class ItemsActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-
                 return true;
             }
         });
@@ -131,7 +133,6 @@ public class ItemsActivity extends AppCompatActivity {
     }
 
     private void searchItem(String newText) {
-        myItemsList.clear();
         myStore.collection("All").whereGreaterThanOrEqualTo("name",newText).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {

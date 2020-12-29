@@ -16,7 +16,7 @@
         <activity android:name=".AddressActivity" android:parentActivityName=".DetailActivity"/>
         <activity android:name=".ItemActivity" />
         <activity android:name=".DetailActivity" android:parentActivityName=".HomeActivity" />
-        <activity android:name=".ItemsActivity" />
+        <activity android:name=".ItemsActivity" android:parentActivityName=".HomeActivity"  />
         <activity android:name=".HomeActivity" />
         <activity android:name=".RegisterActivity" android:parentActivityName=".MainActivity" />
         <activity android:name=".LoginActivity" android:parentActivityName=".MainActivity"/>
