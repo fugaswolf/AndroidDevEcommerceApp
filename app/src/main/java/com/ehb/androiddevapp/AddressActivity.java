@@ -26,7 +26,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddressActivity extends AppCompatActivity {
+public class AddressActivity extends AppCompatActivity implements AddressAdapter.SelectedAddress {
 
     private RecyclerView myAddressRecyclerView;
     private AddressAdapter myAddressAdapter;
@@ -36,6 +36,7 @@ public class AddressActivity extends AppCompatActivity {
     private FirebaseFirestore myStore;
     private FirebaseAuth myAuth;
     private Toolbar myToolbar;
+    String address= "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +52,7 @@ public class AddressActivity extends AppCompatActivity {
         myAuth=FirebaseAuth.getInstance();
         myStore=FirebaseFirestore.getInstance();
         myAddressList=new ArrayList<>();
-        myAddressAdapter=new AddressAdapter(getApplicationContext(),myAddressList);
+        myAddressAdapter=new AddressAdapter(getApplicationContext(),myAddressList, this);
         myAddressRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         myAddressRecyclerView.setAdapter(myAddressAdapter);
 
@@ -81,24 +82,41 @@ public class AddressActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 double amount=0.0;
+                String url ="";
+                String name ="";
                 if(obj instanceof Featured){
                     Featured  f= (Featured) obj;
                     amount=f.getPrice();
+                    url=f.getImg_url();
+                    name=f.getName();
                 }
                 if(obj instanceof BestSeller){
                     BestSeller f= (BestSeller) obj;
                     amount=f.getPrice();
+                    url=f.getImg_url();
+                    name=f.getName();
 
                 }
                 if(obj instanceof Items){
                     Items  i= (Items) obj;
                     amount=i.getPrice();
+                    url=i.getImg_url();
+                    name=i.getName();
 
                 }
                 Intent intent=new Intent(AddressActivity.this,PaymentActivity.class);
                 intent.putExtra("amount",amount);
+                intent.putExtra("img_url",url);
+                intent.putExtra("name",name);
+                intent.putExtra("address", address);
+
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void setAddress(String s) {
+        address = s;
     }
 }

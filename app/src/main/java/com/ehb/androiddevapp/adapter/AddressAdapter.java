@@ -18,10 +18,12 @@ import java.util.List;
 public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHolder> {
     Context applicationContext;
     List<Address> myAddressList;
+    SelectedAddress selectedAddress;
     private RadioButton mySelectedRadioButton;
-    public AddressAdapter(Context applicationContext, List<Address> mAddressList) {
+    public AddressAdapter(Context applicationContext, List<Address> myAddressList, SelectedAddress selectedAddress) {
         this.applicationContext=applicationContext;
-        this.myAddressList=mAddressList;
+        this.myAddressList=myAddressList;
+        this.selectedAddress= selectedAddress;
     }
 
     @NonNull
@@ -48,6 +50,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
                 }
                 mySelectedRadioButton = (RadioButton) v;
                 mySelectedRadioButton.setChecked(true);
+                selectedAddress.setAddress(myAddressList.get(position).getAddress());
             }
         });
 
@@ -70,5 +73,10 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
             myAddress=itemView.findViewById(R.id.address_add);
             myRadio=itemView.findViewById(R.id.select_address);
         }
+    }
+
+
+    public interface SelectedAddress {
+        public void setAddress(String s);
     }
 }
