@@ -1,7 +1,7 @@
 # OPBOUW VAN DE APP
 
 
-Firebase is de hoofd database, SQLite wordt alleen gebruikt wanneer de app is.
+Firebase is de hoofd database, SQLite wordt alleen gebruikt wanneer de app offline is.
 
 Eens de app weer internet connectie heeft zal de lokaal opgeslagen data opgeslagen worden in de database.
 
