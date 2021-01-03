@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.ehb.androiddevapp.DetailActivity;
 import com.ehb.androiddevapp.R;
 import com.ehb.androiddevapp.domain.Featured;
@@ -24,7 +25,7 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.ViewHo
 
 
     public FeaturedAdapter(Context context, List<Featured> myFeaturedList) {
-        this.context=context;
+        this.context = context;
         this.myFeaturedList = myFeaturedList;
     }
 
@@ -42,7 +43,7 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.ViewHo
         holder.myFetName.setText(myFeaturedList.get(position).getName());
         Glide.with(context).load(myFeaturedList.get(position).getImg_url()).into(holder.myFetImage);
         holder.myFetImage.setOnClickListener(v -> {
-            Intent intent=new Intent(context, DetailActivity.class);
+            Intent intent = new Intent(context, DetailActivity.class);
             intent.putExtra("detail", myFeaturedList.get(position));
             context.startActivity(intent);
         });
@@ -59,9 +60,9 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.ViewHo
         TextView myFetName;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            myFetImage=itemView.findViewById(R.id.f_img);
-            myFetCost=itemView.findViewById(R.id.f_cost);
-            myFetName=itemView.findViewById(R.id.f_name);
+            myFetImage= itemView.findViewById(R.id.f_img);
+            myFetCost =itemView.findViewById(R.id.f_cost);
+            myFetName =itemView.findViewById(R.id.f_name);
         }
     }
 

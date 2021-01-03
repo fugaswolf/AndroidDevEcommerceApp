@@ -20,6 +20,6 @@
         android:id="@+id/f_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="MMA Top"
+        android:text="@string/mma_top"
         android:textSize="18sp"/>
 </LinearLayout>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,13 +7,19 @@
     tools:context=".MainActivity"
     >
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
-        android:text="Welcome to MMA Store"
+        android:text="@string/welcome_to_mma_store"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
@@ -24,7 +30,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="World's biggest MMA webshop"
+        android:text="@string/world_s_biggest_mma_webshop"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintStart_toStartOf="@+id/textView"
@@ -47,7 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="136dp"
         android:background="@drawable/login_btn_bg"
-        android:text="Log in"
+        android:text="@string/log_in"
         android:onClick="loginScreen"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
@@ -60,11 +66,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:onClick="registerScreen"
-        android:text="Register now"
+        android:text="@string/register_now"
         android:textAllCaps="false"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/button"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="@+id/button"
         app:layout_constraintTop_toBottomOf="@+id/button" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

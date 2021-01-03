@@ -25,9 +25,9 @@ import java.util.List;
 public class ItemsRecyclerAdapter extends RecyclerView.Adapter<ItemsRecyclerAdapter.ViewHolder> {
     Context applicationContext;
     List<Items> myItemsList;
-    public ItemsRecyclerAdapter(Context applicationContext, List<Items> mItemsList) {
-        this.applicationContext=applicationContext;
-        this.myItemsList=mItemsList;
+    public ItemsRecyclerAdapter(Context applicationContext, List<Items> myItemsList) {
+        this.applicationContext = applicationContext;
+        this.myItemsList = myItemsList;
     }
 
     @NonNull
@@ -39,28 +39,28 @@ public class ItemsRecyclerAdapter extends RecyclerView.Adapter<ItemsRecyclerAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        holder.mCost.setText("€ "+myItemsList.get(position).getPrice());
-        holder.mName.setText(myItemsList.get(position).getName());
+        holder.myCost.setText("€ " + myItemsList.get(position).getPrice());
+        holder.myName.setText(myItemsList.get(position).getName());
         if(!(applicationContext instanceof HomeActivity)){
-            Glide.with(applicationContext).load(myItemsList.get(position).getImg_url()).into(holder.mItemImage);
+            Glide.with(applicationContext).load(myItemsList.get(position).getImg_url()).onlyRetrieveFromCache(true).into(holder.myItemImage);
 
         }else
         {
-            holder.mItemImage.setVisibility(View.GONE);
+            holder.myItemImage.setVisibility(View.GONE);
         }
 
-        holder.mItemImage.setOnClickListener(new View.OnClickListener() {
+        holder.myItemImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(applicationContext, DetailActivity.class);
+                Intent intent = new Intent(applicationContext, DetailActivity.class);
                 intent.putExtra("detail",myItemsList.get(position));
                 applicationContext.startActivity(intent);
             }
         });
-        holder.mName.setOnClickListener(new View.OnClickListener() {
+        holder.myName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(applicationContext, DetailActivity.class);
+                Intent intent = new Intent(applicationContext, DetailActivity.class);
                 intent.putExtra("detail",myItemsList.get(position));
                 applicationContext.startActivity(intent);
             }
@@ -73,15 +73,15 @@ public class ItemsRecyclerAdapter extends RecyclerView.Adapter<ItemsRecyclerAdap
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        private ImageView mItemImage;
-        private TextView mCost;
-        private TextView mName;
+        private ImageView myItemImage;
+        private TextView myCost;
+        private TextView myName;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            mItemImage=itemView.findViewById(R.id.item_image);
-            mCost=itemView.findViewById(R.id.item_cost);
-            mName=itemView.findViewById(R.id.item_nam);
+            myItemImage = itemView.findViewById(R.id.item_image);
+            myCost = itemView.findViewById(R.id.item_cost);
+            myName = itemView.findViewById(R.id.item_nam);
         }
     }
 }

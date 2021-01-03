@@ -21,8 +21,8 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
     SelectedAddress selectedAddress;
     private RadioButton mySelectedRadioButton;
     public AddressAdapter(Context applicationContext, List<Address> myAddressList, SelectedAddress selectedAddress) {
-        this.applicationContext=applicationContext;
-        this.myAddressList=myAddressList;
+        this.applicationContext = applicationContext;
+        this.myAddressList = myAddressList;
         this.selectedAddress= selectedAddress;
     }
 

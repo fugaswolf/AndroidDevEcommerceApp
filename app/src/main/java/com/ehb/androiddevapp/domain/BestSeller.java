@@ -9,6 +9,28 @@ public class BestSeller implements Serializable {
     double price;
     int rating;
 
+    //Local Database table name of this model
+    public static final String TABLE_NAME = "best_seller";
+
+    // local database column name of this model
+    public static final String COLUMN_ID = "id";
+    public static final String COLUMN_Name = "name";
+    public static final String COLUMN_description = "description";
+    public static final String COLUMN_img_url = "img_url";
+    public static final String COLUMN_rating = "rating";
+    public static final String COLUMN_price = "price";
+
+    //create table query of this model in local database
+    public static final String CREATE_TABLE =  "CREATE TABLE " + TABLE_NAME + "("
+            + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + COLUMN_Name + " TEXT,"
+            + COLUMN_description + " TEXT,"
+            + COLUMN_img_url + " TEXT,"
+            + COLUMN_rating + " INTEGER,"
+            + COLUMN_price + " REAL"
+            + ")";
+
+
     public BestSeller() {
     }
 

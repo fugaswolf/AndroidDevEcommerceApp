@@ -10,8 +10,6 @@ import com.bumptech.glide.*;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
-
-import com.ehb.androiddevapp.ItemActivity;
 import com.ehb.androiddevapp.ItemsActivity;
 import com.ehb.androiddevapp.R;
 import com.ehb.androiddevapp.domain.Category;
@@ -23,8 +21,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     private List<Category> myCategoryList;
 
     public CategoryAdapter(Context context, List<Category> myCategoryList) {
-        this.context=context;
-        this.myCategoryList=myCategoryList;
+        this.context = context;
+        this.myCategoryList = myCategoryList;
     }
 
     @NonNull
@@ -41,8 +39,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         holder.myTypeImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(context, ItemsActivity.class);
-                intent.putExtra("type",myCategoryList.get(position).getType());
+                Intent intent = new Intent(context, ItemsActivity.class);
+                intent.putExtra("type", myCategoryList.get(position).getType());
                 context.startActivity(intent);
             }
         });
@@ -57,7 +55,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         private ImageView myTypeImg;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            myTypeImg=itemView.findViewById(R.id.category_img);
+            myTypeImg = itemView.findViewById(R.id.category_img);
         }
     }
 }

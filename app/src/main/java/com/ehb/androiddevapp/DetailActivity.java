@@ -48,54 +48,54 @@ public class DetailActivity extends AppCompatActivity {
         myItemDesc=findViewById(R.id.item_des);
         myAddToCart=findViewById(R.id.item_add_cart);
         myBuyBtn=findViewById(R.id.item_buy_now);
-        final Object obj=  getIntent().getSerializableExtra("detail");
-        if(obj instanceof Featured){
-            featured = (Featured) obj;
-        }else if(obj instanceof BestSeller){
-            bestSeller = (BestSeller) obj;
-        }
-        else if(obj instanceof Items){
-            items= (Items) obj;
-        }
-        if(featured !=null){
-            Glide.with(getApplicationContext()).load(featured.getImg_url()).into(myImage);
-            myItemName.setText(featured.getName());
-            myPrice.setText(featured.getPrice()+"€");
-            myItemRating.setText(featured.getRating()+"");
-            if(featured.getRating()>3){
-                myItemRatDesc.setText("Very Good");
-            }else{
-                myItemRatDesc.setText("Good");
+        if(getIntent().getSerializableExtra("detail")!=null) {
+            final Object obj = getIntent().getSerializableExtra("detail");
+            if (obj instanceof Featured) {
+                featured = (Featured) obj;
+            } else if (obj instanceof BestSeller) {
+                bestSeller = (BestSeller) obj;
+            } else if (obj instanceof Items) {
+                items = (Items) obj;
             }
-            myItemDesc.setText(featured.getDescription());
-        }
-        if(bestSeller !=null){
-            Glide.with(getApplicationContext()).load(bestSeller.getImg_url()).into(myImage);
-            myItemName.setText(bestSeller.getName());
-            myPrice.setText(bestSeller.getPrice()+"€");
-            myItemRating.setText(bestSeller.getRating()+"");
-            if(bestSeller.getRating()>3){
-                myItemRatDesc.setText("Very Good");
-            }else{
-                myItemRatDesc.setText("Good");
+            if (featured != null) {
+                Glide.with(getApplicationContext()).load(featured.getImg_url()).into(myImage);
+                myItemName.setText(featured.getName());
+                myPrice.setText(featured.getPrice() + "€");
+                myItemRating.setText(featured.getRating() + "");
+                if (featured.getRating() > 3) {
+                    myItemRatDesc.setText(R.string.ver_good);
+                } else {
+                    myItemRatDesc.setText(R.string.good);
+                }
+                myItemDesc.setText(featured.getDescription());
             }
-            myItemDesc.setText(bestSeller.getDescription());
-        }
-        if(items!=null){
-            Glide.with(getApplicationContext()).load(items.getImg_url()).into(myImage);
-            myItemName.setText(items.getName());
-            myPrice.setText(items.getPrice()+"€");
-            myItemRating.setText(items.getRating()+"");
-            if(items.getRating()>3){
-                myItemRatDesc.setText("Very Good");
-            }else{
-                myItemRatDesc.setText("Good");
+            if (bestSeller != null) {
+                Glide.with(getApplicationContext()).load(bestSeller.getImg_url()).into(myImage);
+                myItemName.setText(bestSeller.getName());
+                myPrice.setText(bestSeller.getPrice() + "€");
+                myItemRating.setText(bestSeller.getRating() + "");
+                if (bestSeller.getRating() > 3) {
+                    myItemRatDesc.setText(R.string.ver_good);
+                } else {
+                    myItemRatDesc.setText("Good");
+                }
+                myItemDesc.setText(bestSeller.getDescription());
             }
-            myItemDesc.setText(items.getDescription());
-        }
+            if (items != null) {
+                Glide.with(getApplicationContext()).load(items.getImg_url()).into(myImage);
+                myItemName.setText(items.getName());
+                myPrice.setText(items.getPrice() + "€");
+                myItemRating.setText(items.getRating() + "");
+                if (items.getRating() > 3) {
+                    myItemRatDesc.setText(R.string.ver_good);
+                } else {
+                    myItemRatDesc.setText(R.string.good);
+                }
+                myItemDesc.setText(items.getDescription());
+            }
 
 
-
+        }
         myAddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,10 +106,10 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(DetailActivity.this,AddressActivity.class);
-                if(featured!=null){
+                if(featured != null){
                     intent.putExtra("item", featured);
                 }
-                if(bestSeller!=null){
+                if(bestSeller != null){
                     intent.putExtra("item", bestSeller);
                 }
                 if(items!=null){

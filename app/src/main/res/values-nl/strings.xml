@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MMA Store</string>
+    <string name="login">Login</string>
+
+    <string name="password">Wachtwoord</string>
+
+    <string name="email">Email</string>
+
+    <string name="log_in">Log in</string>
+
+    <string name="don_t_have_account">Ik heb geen account</string>
+
+    <string name="register_now">Schrijf je in</string>
+
+    <string name="create_address">Maak adres aan</string>
+
+    <string name="name">Naam</string>
+
+    <string name="address_lane">Straat</string>
+
+    <string name="postal_code">Postcode</string>
+
+    <string name="city">Stad</string>
+
+    <string name="add_address">Voeg adres toe</string>
+
+    <string name="continue_to_payment">Doorgaan naar betaling</string>
+
+    <string name="address">Adres</string>
+
+    <string name="mma_rash_guard_top">MMA Rash guard top</string>
+
+    <string name="very_good">Zeer goed</string>
+
+    <string name="_49_reviews">49 Beoordelingen</string>
+
+    <string name="description_item">Beschrijving product</string>
+
+    <string name="mma_sports_wear_lorem_ipsum_dolor">MMA Sports wear lorem ipsum dolor ..</string>
+
+    <string name="select_size">Selecteer maat</string>
+
+    <string name="buy_now">Koop nu</string>
+
+    <string name="add_to_cart">Voeg toe aan winkelmand</string>
+
+    <string name="l">L</string>
+
+    <string name="m">M</string>
+
+    <string name="s">S</string>
+
+    <string name="search_your_product">Zoek jouw product</string>
+
+    <string name="welcome_to_mma_store">Welkom bij MMA Winkel</string>
+
+    <string name="world_s_biggest_mma_webshop">Wereld\'s grootste MMA webshop</string>
+
+    <string name="payment">Betaling</string>
+
+    <string name="subtotal">Subtotaal</string>
+
+    <string name="discount">Korting</string>
+
+    <string name="shipping">Verzending</string>
+
+    <string name="total">Totaal</string>
+
+    <string name="check_out">Check Out</string>
+
+    <string name="signup">Inschrijving</string>
+
+    <string name="create_account">Account aanmaken</string>
+
+    <string name="already_have_an_account">Heb je al een account?</string>
+
+    <string name="loading">Laden...</string>
+
+    <string name="categories">Categorieën</string>
+
+    <string name="see_all">Toon alles</string>
+
+    <string name="featured">Uitgelicht</string>
+
+    <string name="best_sellers">Best verkocht</string>
+
+    <string name="brussels_belgium">Brussel België</string>
+
+    <string name="mma_top">MMA Top</string>
+
+    <string name="log_out">Log uit</string>
+
+    <string name="change_language">Taal wijzigen</string>
+    <string name="ver_good">Zeer goed</string>
+    <string name="good">Mooi zo</string>
+</resources>

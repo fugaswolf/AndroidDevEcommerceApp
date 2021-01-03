@@ -3,10 +3,13 @@ package com.ehb.androiddevapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,6 +38,17 @@ public class MainActivity extends AppCompatActivity {
         if(myAuth.getCurrentUser() != null){
             startActivity(new Intent(MainActivity.this, HomeActivity.class));
             finish();
+        }else {
+            if(getSharedPreferences()){
+                startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                finish();
+            }
         }
     }
+
+    private boolean getSharedPreferences(){
+        SharedPreferences prefs = getSharedPreferences("user", MODE_PRIVATE);
+        return prefs.getBoolean("isLogin", false);
+    }
+
 }

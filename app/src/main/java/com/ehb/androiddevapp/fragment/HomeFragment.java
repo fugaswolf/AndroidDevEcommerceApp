@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.ehb.androiddevapp.database.DatabaseHelper;
 import com.ehb.androiddevapp.ItemsActivity;
 import com.ehb.androiddevapp.R;
 import com.ehb.androiddevapp.adapter.BestSellerAdapter;
@@ -22,6 +23,7 @@ import com.ehb.androiddevapp.adapter.FeaturedAdapter;
 import com.ehb.androiddevapp.domain.BestSeller;
 import com.ehb.androiddevapp.domain.Category;
 import com.ehb.androiddevapp.domain.Featured;
+import com.ehb.androiddevapp.domain.Utils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -51,6 +53,9 @@ public class HomeFragment extends Fragment {
     private TextView mySeeAll;
     private TextView myFeatured;
     private TextView myBestSeller;
+
+    //local database class object
+    private DatabaseHelper databaseHelper;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -86,58 +91,132 @@ public class HomeFragment extends Fragment {
         myBestSellRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
         myBestSellRecyclerView.setAdapter(myBestSellerAdapter);
 
+        //initialize the database helper class object
+        databaseHelper = new DatabaseHelper(getActivity());
+        //checking if internet is available
+        if(Utils.isInternetConnected || databaseHelper!=null) {
+            myStore.collection("Category")
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    Category category = document.toObject(Category.class);
+                                    myCategoryList.add(category);
+                                    myCategoryAdapter.notifyDataSetChanged();
+                                    Log.d("debugcategoryvalue",category.getImg_url());
 
-        myStore.collection("Category")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Category category = document.toObject(Category.class);
-                                myCategoryList.add(category);
-                                myCategoryAdapter.notifyDataSetChanged();
+                                    // algorithm to sync all data of local database with firebase data
+                                    ArrayList<Category> arrayList = new ArrayList<Category>();
+                                    //getting all save category from local database
+                                    arrayList = databaseHelper.getAllCategory();
+                                    //iterate the complete saved list of category
+                                    for (int i = 0; i < arrayList.size(); i++) {
+                                        //checking if any new data added at firebase and not present in local database than save it
+                                        if (!arrayList.get(i).getType().toLowerCase().equals(category.getType().toLowerCase())) {
+                                            //insert new data in category table
+                                            databaseHelper.insertCategory(category);
+                                        }
+                                    }
+
+                                }
+                            } else {
+                                Log.w("TAG", "Error getting categories.", task.getException());
                             }
-                        } else {
-                            Log.w("TAG", "Error getting categories.", task.getException());
                         }
-                    }
-                });
+                    });
 
-        myStore.collection("Featured")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Featured featured = document.toObject(Featured.class);
-                                myFeaturedList.add(featured);
-                                myFeaturedAdapter.notifyDataSetChanged();
+        }//if internet is no available than this else condition will run that get data from local db
+        else {
+            ArrayList<Category> arrayList = new ArrayList<Category>();
+            //getting all save category from local database
+            arrayList = databaseHelper.getAllCategory();
+            //iterate the complete saved list of category
+            for (int i = 0; i < arrayList.size(); i++) {
+                //adding the list to the adapter from local db
+                myCategoryList.add(arrayList.get(i));
+            }
+        }
+        if(Utils.isInternetConnected || databaseHelper!=null) {
+            myStore.collection("Featured")
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    Featured featured = document.toObject(Featured.class);
+                                    myFeaturedList.add(featured);
+                                    myFeaturedAdapter.notifyDataSetChanged();
+                                    // algorithm to sync all data of local database with firebase data
+                                    ArrayList<Featured> arrayList = new ArrayList<Featured>();
+                                    //getting all save Featured from local database
+                                    arrayList = databaseHelper.getAllFeatured();
+                                    //iterate the complete saved list of featured
+                                    for (int i = 0; i < arrayList.size(); i++) {
+                                        //checking if any new data added at firebase and not present in local database than save it
+                                        if (!arrayList.get(i).getName().toLowerCase().equals(featured.getName().toLowerCase())) {
+                                            databaseHelper.insertFeatured(featured);
+                                        }
+                                    }
+                                }
+                            } else {
+                                Log.w("TAG", "Error getting featured products.", task.getException());
                             }
-                        } else {
-                            Log.w("TAG", "Error getting featured products.", task.getException());
                         }
-                    }
-                });
+                    });
 
+        }//if internet is no available than this else condition will run that get data from local db
+        else {
 
-        myStore.collection("BestSeller")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                BestSeller bestSeller = document.toObject(BestSeller.class);
-                                myBestSellerList.add(bestSeller);
-                                myBestSellerAdapter.notifyDataSetChanged();
+            ArrayList<Featured> arrayList = new ArrayList<Featured>();
+            arrayList = databaseHelper.getAllFeatured();
+            //iterate the complete saved list of category
+            for (int i = 0; i < arrayList.size(); i++) {
+                //adding data to arraylist from local db
+                myFeaturedList.add(arrayList.get(i));
+            }
+        }
+        if(Utils.isInternetConnected || databaseHelper!=null) {
+            myStore.collection("BestSeller")
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    BestSeller bestSeller = document.toObject(BestSeller.class);
+                                    myBestSellerList.add(bestSeller);
+                                    myBestSellerAdapter.notifyDataSetChanged();
+                                    // algorithm to sync all data of local database with firebase data
+                                    ArrayList<BestSeller> arrayList = new ArrayList<BestSeller>();
+                                    //getting all save Best Seller from local database
+                                    arrayList = databaseHelper.getAllBestSeller();
+                                    //iterate the complete saved list of Best Seller
+                                    for (int i = 0; i < arrayList.size(); i++) {
+                                        //checking if any new data added at firebase and not present in local database than save it
+                                        if (!arrayList.get(i).getName().toLowerCase().equals(bestSeller.getName().toLowerCase())) {
+                                            databaseHelper.insertBestSeller(bestSeller);
+                                        }
+                                    }
+                                }
+                            } else {
+                                Log.w("TAG", "Error getting best sellers.", task.getException());
                             }
-                        } else {
-                            Log.w("TAG", "Error getting best sellers.", task.getException());
                         }
-                    }
-                });
+                    });
+        }else {
+            ArrayList<BestSeller> arrayList = new ArrayList<BestSeller>();
+            //getting all save Best Seller from local database
+            arrayList = databaseHelper.getAllBestSeller();
+            //iterate the complete saved list of Best Seller
+            for (int i = 0; i < arrayList.size(); i++) {
+                //adding tha data from local db
+                myBestSellerList.add(arrayList.get(i));
+                myBestSellerAdapter.notifyDataSetChanged();
+            }
+        }
         mySeeAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -1,25 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.ehb.androiddevapp">
+
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="29"
+        tools:overrideLibrary="com.razorpay" />
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AndroidDevApp">
-        <activity android:name=".PaymentActivity"></activity>
-        <activity android:name=".AddAddressActivity" android:parentActivityName=".AddressActivity"/>
-        <activity android:name=".AddressActivity" android:parentActivityName=".DetailActivity"/>
-        <activity android:name=".ItemActivity" />
-        <activity android:name=".DetailActivity" android:parentActivityName=".HomeActivity" />
-        <activity android:name=".ItemsActivity" android:parentActivityName=".HomeActivity"  />
+        android:theme="@style/Theme.AndroidDevApp"
+        tools:overrideLibrary="com.razorpay">
+        <activity android:name=".ChangeLanguage"
+            android:parentActivityName=".HomeActivity"
+            ></activity>
+        <activity android:name=".PaymentActivity" />
+        <activity
+            android:name=".AddAddressActivity"
+            android:parentActivityName=".AddressActivity" />
+        <activity
+            android:name=".AddressActivity"
+            android:parentActivityName=".DetailActivity" />
+        <activity
+            android:name=".DetailActivity"
+            android:parentActivityName=".HomeActivity" />
+        <activity
+            android:name=".ItemsActivity"
+            android:parentActivityName=".HomeActivity" />
         <activity android:name=".HomeActivity" />
-        <activity android:name=".RegisterActivity" android:parentActivityName=".MainActivity" />
-        <activity android:name=".LoginActivity" android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".RegisterActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".LoginActivity"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,6 +50,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
+
         <meta-data
             android:name="com.razorpay.ApiKey"
             android:value="rzp_test_nBf32QJslsqCOG" />
